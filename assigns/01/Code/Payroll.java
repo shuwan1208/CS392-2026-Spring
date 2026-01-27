@@ -9,9 +9,7 @@ public class Payroll {
 	/* your code */
     this.maximum_size= INITIAL_MAXIMUM_SIZE;
     this.current_size=0;
-
-
-
+    this.people = new Employee[maximum_size];
     }
     public int size(){
         return current_size;
@@ -19,14 +17,11 @@ public class Payroll {
     public void print(){
         if (current_size == 0) {
             System.out.println("Payroll is empty");
-            return;
         }
         else{
             for (int i=0;i<current_size;i++){
                 Employee emp=people[i];
                 System.out.printf("Name: %s, ID: %d, Salary: %.2f\n",emp.name, emp.ID, emp.salary);
-
-
             }
         }
 
@@ -61,11 +56,11 @@ public class Payroll {
     public int find_employee(String name) throws EmployeeNotFoundException {
 	/* your code */
     for (int i = 0; i < current_size; i++) {
-        if (people[i].name.equals(target_name)) {
+        if (people[i].name.equals(name)) {
             return i;
         }
     }
-    throw new EmployeeNotFoundException("Employee with name '" + target_name + "' not found");
+    throw new EmployeeNotFoundException();
     }
 
     public void copy_payroll(Payroll source) {
