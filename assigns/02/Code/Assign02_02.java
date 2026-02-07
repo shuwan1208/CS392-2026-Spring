@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import java.util.Arrays;
+>>>>>>> upstream/main
 
 public class Assign02_02 {
     /*
@@ -27,6 +31,7 @@ public class Assign02_02 {
     public static <T extends Comparable<T> > int indexOf(T[] a, T key) {
 	// Please give a recursive implementation of 'indexOf' that is
 	// equivalent to the above one
+<<<<<<< HEAD
         int lo = 0;
         int hi = a.length - 1;
         return indexOfplus(a, key,lo,hi);
@@ -61,5 +66,11 @@ public class Assign02_02 {
         String[] words = {"apple", "banana", "cherry"};
         System.out.println(indexOf(words, "banana"));
         System.out.println(indexOf(words, "pear"));
+=======
+    }
+
+    public void main(String[] argv) {
+	// Please write some testing code for your implementation of 'indexOf'
+>>>>>>> upstream/main
     }
 }

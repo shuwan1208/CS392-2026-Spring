@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/main
 public class Assign02_03 {
     public static boolean solve_3sum(Integer[] A) {
 	// Please give a soft qudratic time implementation
@@ -6,6 +9,7 @@ public class Assign02_03 {
 	// solve_3sum(A) returns true if and only if there exist
 	// distinct indices i, j, and k satisfying A[i]+A[j] = A[k].
 	// Why is your implementation soft O(n^2)?
+<<<<<<< HEAD
 
 	for(int i=0;i<A.length;i++){
 		int left=0, right=A.length-1;
@@ -42,5 +46,10 @@ public class Assign02_03 {
         Integer[] A4 = {1, 2};
         System.out.println(solve_3sum(A4));
 	// t f t f
+=======
+    }
+    public static main(String[] argv) {
+	// Please write some code here for testing solve_3sum
+>>>>>>> upstream/main
     }
 }
