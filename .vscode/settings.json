@@ -1,7 +1,9 @@
 {
     "java.project.sourcePaths": [
-        "assigns/03/Code",
+        "libraries",
+        "assigns/04/MySolution",
         "assigns/03/MySolution",
-        "libraries" 
+        "assigns/03/Code",
+        "assigns/05/MySolution"
     ]
 }

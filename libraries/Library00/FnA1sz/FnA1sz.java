@@ -1,6 +1,6 @@
-package Library.FnA1sz;
+package Library00.FnA1sz;
 
-import Library.FnList.*;
+import Library00.FnList.*;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
