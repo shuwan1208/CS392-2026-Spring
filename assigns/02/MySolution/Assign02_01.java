@@ -8,7 +8,6 @@ public class Assign02_01 {
       operations here. In particular, NO BIT-WISE OPERATIONS ARE ALLOWED.
      */
     public void main(String[] argv) {
-<<<<<<< HEAD
 	  // Please give your implementation here
       int count=0;
       int num=1;
@@ -17,9 +16,6 @@ public class Assign02_01 {
         count++;
       }
       System.out.println("The length of 'int' in bits is: " + count);
-    
-=======
 	// Please give your implementation here
->>>>>>> upstream/main
     }
 }
