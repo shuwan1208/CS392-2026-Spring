@@ -1,3 +1,5 @@
+import java.util.function.ToIntBiFunction;
+import MyLibrary.FnList.*;
 //
 // HX: 30 points
 //
@@ -14,32 +16,58 @@
  is allowed here.
 //
 */
-import MyLibrary.FnList.FnList;
-import MyLibrary.FnList.FnListSUtil;
-import java.util.function.ToIntBiFunction;
 
 abstract public class Quiz01_05 {
-    public static<T>
-	FnList<T> someSort
-	(FnList<T> xs, ToIntBiFunction<T,T> cmp) {
-	// HX-2025-10-15:
-	// This one is abstract, that is, not implemented
-	return FnListSUtil.insertSort(xs, cmp);
+
+    private static class Tagged<T> {
+        final T val;
+        final int idx;
+        Tagged(T v, int i) { val = v; idx = i; }
     }
-    public static<T>
-	FnList<T> someRevStableSort
-	(FnList<T> xs, ToIntBiFunction<T,T> cmp) {
-	// HX-2025-10-15:
-	// Please implement a reverse-stable sorting method
-	// based on someSort
-	//
-	// If [someSort] is stable, then reverse-stable sorting is obtained by:
-	// 1) reverse the input; 2) stable-sort it. Equal keys keep their (reversed)
-	// order, which is exactly "reverse-stable".
-	return someSort(FnListSUtil.reverse(xs), cmp);
+
+    public abstract <T> FnList<T> someSort(FnList<T> xs, ToIntBiFunction<T,T> cmp);
+
+    public <T> FnList<T> someRevStableSort(FnList<T> xs, ToIntBiFunction<T,T> cmp) {
+        if (xs == null || xs.nilq()) return xs;
+
+        FnList<Tagged<T>> taggedRev = new FnList<>();
+        FnList<T> cur = xs;
+        int i = 0;
+        
+        while (cur.consq()) {
+            taggedRev = new FnList<>(new Tagged<>(cur.hd(), i), taggedRev);
+            cur = cur.tl();
+            i++;
+        }
+        
+        FnList<Tagged<T>> tagged = reverseList(taggedRev);
+
+        FnList<Tagged<T>> sortedTagged = someSort(tagged, (a, b) -> {
+            int c = cmp.applyAsInt(a.val, b.val);
+            if (c != 0) return c;
+            return Integer.compare(b.idx, a.idx); 
+        });
+
+        FnList<T> resultRev = new FnList<>();
+        FnList<Tagged<T>> cur2 = sortedTagged;
+        
+        while (cur2.consq()) {
+            resultRev = new FnList<>(cur2.hd().val, resultRev);
+            cur2 = cur2.tl();
+        }
+        
+        return reverseList(resultRev);
+    }
+
+    private <T> FnList<T> reverseList(FnList<T> list) {
+        FnList<T> rev = new FnList<>();
+        while (list.consq()) {
+            rev = new FnList<>(list.hd(), rev);
+            list = list.tl();
+        }
+        return rev;
     }
 }
-
 ////////////////////////////////////////////////////////////////////////.
 //
 // HX-2026-03-04:
