@@ -2,12 +2,6 @@
  *  Array-based Quicksort
  */
 import java.util.Random;
-import java.util.function.Function;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.BiFunction;
-import java.util.function.BiConsumer;
-import java.util.function.BiPredicate;
 import java.util.function.ToIntBiFunction;
 
 public class Assign06_01 {
@@ -55,28 +49,43 @@ public class Assign06_01 {
         A[j] = temp;
     }
 
-   
+
     public static void main(String[] args) {
-        System.out.println("Generating an array of 1,000,000 zeros...");
         int n = 1_000_000;
+        System.out.println("Generating an array of 1,000,000 random numbers...");
+        Integer[] randomArray = new Integer[n];
+        Random testRand = new Random();
+        for (int i = 0; i < n; i++) {
+            randomArray[i] = testRand.nextInt(n); 
+        }
+    
+        System.out.println("Sorting 1M random numbers...");
+        long start1 = System.currentTimeMillis();
+        arrayQuickSort(randomArray, Integer::compare);
+        long end1 = System.currentTimeMillis();
+        System.out.println("Finished in " + (end1 - start1) + " ms!");
+        System.out.println("Is random array properly sorted? " + verifySorted(randomArray));
+    
+        System.out.println("\nGenerating an array of 1,000,000 zeros...");
         Integer[] millionZeros = new Integer[n];
         for (int i = 0; i < n; i++) {
             millionZeros[i] = 0; 
         }
-
+    
         System.out.println("Sorting 1M zeros...");
-        long start = System.currentTimeMillis();
+        long start2 = System.currentTimeMillis();
         arrayQuickSort(millionZeros, Integer::compare);
-        
-        long end = System.currentTimeMillis();
-        System.out.println("Finished in " + (end - start) + " ms!");
-        boolean isSorted = true;
-        for (int i = 1; i < n; i++) {
-            if (millionZeros[i] < millionZeros[i - 1]) {
-                isSorted = false;
-                break;
+        long end2 = System.currentTimeMillis();
+        System.out.println("Finished in " + (end2 - start2) + " ms!");
+        System.out.println("Is zero array properly sorted? " + verifySorted(millionZeros));
+    }
+    
+    private static boolean verifySorted(Integer[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) {
+                return false;
             }
         }
-        System.out.println("Is array properly sorted? " + isSorted);
+        return true;
     }
 }
