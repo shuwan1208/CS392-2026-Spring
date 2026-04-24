@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "MyStackArrayTest",
+            "request": "launch",
+            "mainClass": "Library00.MyStack.MyStackArrayTest",
+            "projectName": "CS392-2026-Spring_cc283dbb"
+        },
+        {
             "type": "jdk",
             "request": "launch",
             "name": "Launch Java App"
