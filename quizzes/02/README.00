@@ -7,30 +7,30 @@ Quiz02_00: 20 points
 Quiz02_01: 50 points
 (FnA1szLongestMonoSubsequence)
 Please state the status of this question:
-1. Incomplete
-2. Solved with testing?
-3. Solved without testing?
-If solved, please BRIEFLY explain your strategy.
+2. Solved with testing.
+Use dynamic programming from right to left. For each index i,
+scan every j > i once and compute the length of the best
+nondecreasing subsequence starting at i; break ties toward the
+smaller next index so the final answer is leftmost. This is O(n^2).
   
 ############################################################
 
 Quiz02_02: 50 points
 (sort1000WithNoRecursion)
 Please state the status of this question:
-1. Incomplete
-2. Solved with testing?
-3. Solved without testing?
-If solved, please BRIEFLY explain your strategy.
+2. Solved with testing.
+Use iterative insertion-sort on the array. No recursion is used.
 
 ############################################################
 
 Quiz02_03: 50 points
 (Soduku_dfs_solve and Soduku_bfs_solve)
 Please state the status of this question:
-1. Incomplete
-2. Solved with testing?
-3. Solved without testing?
-If solved, please BRIEFLY explain your strategy.
+2. Solved with testing.
+Represent a Game-of-24 state as a list of remaining terms. Each child
+combines one pair of terms with +, -, *, or / and reduces the list size
+by one. DFS/BFS directly call DFirstEnumerate/BFirstEnumerate on this tree
+and filter the leaves whose single remaining term evaluates to 24.
 
 ############################################################
 
@@ -44,10 +44,11 @@ Quiz02_04:
 30 points plus up to 20 bonus points
 (isAVL and genAVLBST)
 Please state the status of this question:
-1. Incomplete
-2. Solved with testing?
-3. Solved without testing?
-If solved, please BRIEFLY explain your strategy.
+2. Solved with testing.
+For isAVL, do one postorder traversal and return either the subtree
+height or failure. For the maximal-height question, use the standard
+minimal-node AVL recurrence S(h)=1+S(h-1)+S(h-2) and find the largest
+h with S(h) <= 1,000,000, which gives height 28.
 
 ############################################################
 
@@ -55,19 +56,20 @@ Quiz02_05:
 30 points plus up to 20 bonus points
 (isRBT and genRedBlackBST)
 Please state the status of this question:
-1. Incomplete
-2. Solved with testing?
-3. Solved without testing?
-If solved, please BRIEFLY explain your strategy.
+2. Solved with testing.
+For isRBT, do one traversal that checks the red-parent rule and equal
+black heights on both subtrees. For the black-height question, use the
+fact that a red-black tree of black-height b has at most 2^(2b)-1
+internal nodes, so 1,000,000 keys require black-height 10.
 
 ############################################################
 
 Quiz02_06: 50 points
 (reroot and insert on DBST)
 Please state the status of this question:
-1. Incomplete
-2. Solved with testing?
-3. Solved without testing?
-If solved, please BRIEFLY explain your strategy.
+2. Solved with testing.
+Insert is standard BST leaf insertion with parent pointers and subtree
+size updates. reroot selects a random node by rank using stored sizes,
+then rotates it upward until it becomes the root.
 
 ############################################################

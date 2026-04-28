@@ -1,10 +1,12 @@
 package MyLibrary.FnList;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
+import java.util.function.Function;
 import java.util.function.ToIntBiFunction;
 
 public class FnListSUtil {
@@ -12,6 +14,10 @@ public class FnListSUtil {
     public static<T>
 	FnList<T> nil() {
 	return new FnList<T>();
+    }
+    public static<T>
+	FnList<T> sing(T x0) {
+	return new FnList<T>(x0, nil());
     }
     public static<T>
 	FnList<T>
@@ -84,6 +90,11 @@ public class FnListSUtil {
     }
 
     public static<T>
+	void rforitm(FnList<T> xs, Consumer<? super T> work) {
+	foritm(reverse(xs), work);
+    }
+
+    public static<T>
 	void iforitm(FnList<T> xs, BiConsumer<Integer, ? super T> work) {
 	int i = 0;
 	while (xs.consq()) {
@@ -107,6 +118,11 @@ public class FnListSUtil {
 	    }
 	}
 	return true;
+    }
+
+    public static<T>
+	void irforitm(FnList<T> xs, BiConsumer<Integer, ? super T> work) {
+	iforitm(reverse(xs), work);
     }
 
     public static<T>
@@ -175,6 +191,25 @@ public class FnListSUtil {
 	    res = cons(arr[i], res);
 	}
 	return res;
+    }
+
+    public static<T>
+	FnList<T> fwork$make(Consumer<Consumer<? super T>> fwork) {
+	final AtomicReference<FnList<T>> rf =
+	    new AtomicReference<FnList<T>>(nil());
+	fwork.accept((T x0) -> rf.set(cons(x0, rf.get())));
+	return reverse(rf.get());
+    }
+
+    public static<T,R>
+	FnList<R> map_list
+	(FnList<T> xs, Function<? super T, R> fopr) {
+	FnList<R> rs = nil();
+	while (xs.consq()) {
+	    rs = cons(fopr.apply(xs.hd()), rs);
+	    xs = xs.tl();
+	}
+	return reverse(rs);
     }
 //
 } // end of [public class FnListSUtil{...}]

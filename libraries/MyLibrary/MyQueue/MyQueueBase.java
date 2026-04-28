@@ -1,6 +1,7 @@
 package MyLibrary.MyQueue;
 
 import MyLibrary.FnList.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 import java.util.function.BiConsumer;
 
@@ -54,6 +55,28 @@ public abstract class MyQueueBase<T> implements MyQueue<T> {
 	  }
 	);
 	System.out.print(")");
+    }
+//
+    public void
+    rforitm(Consumer<? super T> work) {
+        final AtomicReference<FnList<T>> itms =
+	    new AtomicReference<FnList<T>>(new FnList<T>());
+	foritm(
+	  itm ->
+	  itms.set(new FnList<T>(itm, itms.get()))
+        );
+	FnListSUtil.foritm(itms.get(), work);
+    }
+//
+    public void
+    irforitm(BiConsumer<Integer, ? super T> work) {
+        final AtomicReference<FnList<T>> itms =
+	    new AtomicReference<FnList<T>>(new FnList<T>());
+	foritm(
+	  itm ->
+	  itms.set(new FnList<T>(itm, itms.get()))
+        );
+	FnListSUtil.iforitm(itms.get(), work);
     }
 //
 } // end of [public abstract class MyQueueBase<T>{...}]

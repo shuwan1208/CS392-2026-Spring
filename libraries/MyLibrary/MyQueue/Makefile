@@ -14,6 +14,7 @@ cleanall:: ; rm -f *.class
 ###################################################################
 
 comp:: ; javac -cp $(Library) MyQueue.java
+comp:: ; javac -cp $(Library) MyQueueList.java
 comp:: ; javac -cp $(Library) MyQueueArray.java
 comp:: ; javac -cp $(Library) MyQueueFullExn.java
 comp:: ; javac -cp $(Library) MyQueueEmptyExn.java

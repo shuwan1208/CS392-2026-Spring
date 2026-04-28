@@ -1,5 +1,8 @@
 package MyLibrary.FnList;
 
+import java.util.function.Consumer;
+import java.util.function.BiConsumer;
+
 public class FnList<T> {
 //
     private Node root;
@@ -45,6 +48,30 @@ public class FnList<T> {
 	    res += 1; xs = xs.tl();
 	}
 	return res;
+    }
+//
+    public FnList<T> reverse() {
+	return FnListSUtil.reverse(this);
+    }
+
+    public void System$out$print() {
+	FnListSUtil.System$out$print(this);
+    }
+
+    public void foritm(Consumer<? super T> work) {
+	FnListSUtil.foritm(this, work);
+    }
+
+    public void rforitm(Consumer<? super T> work) {
+	FnListSUtil.foritm(this.reverse(), work);
+    }
+
+    public void iforitm(BiConsumer<Integer, ? super T> work) {
+	FnListSUtil.iforitm(this, work);
+    }
+
+    public void irforitm(BiConsumer<Integer, ? super T> work) {
+	FnListSUtil.iforitm(this.reverse(), work);
     }
 //
 } // end of [public class FnList<T>{...}]
