@@ -56,12 +56,6 @@ Quiz02_05:
 30 points plus up to 20 bonus points
 (isRBT and genRedBlackBST)
 Please state the status of this question:
-2. Solved with testing.
-For isRBT, do one traversal that checks the red-parent rule and equal
-black heights on both subtrees. For the black-height question, use the
-fact that a red-black tree of black-height b has at most 2^(2b)-1
-internal nodes, so 1,000,000 keys require black-height 10.
-
 ############################################################
 
 Quiz02_06: 50 points

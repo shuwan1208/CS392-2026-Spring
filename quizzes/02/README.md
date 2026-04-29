@@ -43,50 +43,52 @@ Please choose this one or Quiz02_04
 
 ##################################################################
 
-## Status Notes
+## Notes
+
+I chose `Quiz02_04`.
+
+### Quiz02_00
+I created one object for each concrete top-level class I wrote in `MyLibrary`.
+I did not instantiate interfaces or abstract base classes.
 
 ### Quiz02_01
-Status: Solved with testing.
+Solved and tested.
 
-Use dynamic programming from right to left. For each index `i`, scan each
-`j > i` once and compute the length of the best nondecreasing subsequence
-starting at `i`; ties are broken toward the smaller next index so that the
-final answer is the leftmost one. This is `O(n^2)`.
+I used dynamic programming from right to left. For each position `i`, I check
+all `j > i` once and compute the best nondecreasing subsequence starting at
+`i`. That gives `O(n^2)` time overall.
 
 ### Quiz02_02
-Status: Solved with testing.
+Solved and tested.
 
-Use iterative insertion-sort on the array. No recursion is used.
+I used iterative insertion sort only, with no recursion.
 
 ### Quiz02_03
-Status: Solved with testing.
+Solved and tested.
 
-Represent a Game-of-24 state as a list of remaining terms. Each child picks
-one pair of terms, combines them with `+`, `-`, `*`, or `/`, and reduces the
-number of remaining terms by one. DFS/BFS directly call `DFirstEnumerate` or
-`BFirstEnumerate` on this search tree and then filter the leaves whose only
-remaining term evaluates to `24`.
+For Game of 24, I treat each state as the list of terms still left to combine.
+At each step I pick two terms, combine them with one operator, and build the
+next state with one fewer term. I use the provided tree enumeration methods
+directly: `DFirstEnumerate` for DFS and `BFirstEnumerate` for BFS. Then I keep
+the leaves whose final term evaluates to `24`.
 
 ### Quiz02_04
-Status: Solved with testing.
+Solved and tested.
 
-For `isAVL`, do one postorder traversal and return either the subtree height
-or failure. For the maximal-height question, use the minimal-node AVL
-recurrence `S(h) = 1 + S(h-1) + S(h-2)` and find the largest `h` with
-`S(h) <= 1,000,000`, which gives height `28`.
+For `isAVL`, I do one postorder traversal. Each call returns the subtree height
+if the subtree is valid, and failure otherwise, so each node is visited once.
 
-### Quiz02_05
-Status: Solved with testing.
+For the 1,000,000-key AVL question, I used the standard recurrence for the
+minimum number of nodes in an AVL tree of height `h`:
+`S(h) = 1 + S(h-1) + S(h-2)`.
+To make the height as large as possible, the tree should use as few nodes as
+possible for each height. The largest height with `S(h) <= 1,000,000` is `28`.
 
-For `isRBT`, do one traversal that checks the red-parent rule and equal black
-heights on both subtrees. For the black-height question, use the fact that a
-red-black tree of black-height `b` has at most `2^(2b) - 1` internal nodes, so
-`1,000,000` keys require black-height `10`.
 
 ### Quiz02_06
-Status: Solved with testing.
+Solved and tested.
 
-`insert` is standard BST leaf insertion with parent pointers and subtree-size
-updates. `reroot` selects a random node by rank using stored sizes, then uses
-rotations to move that node to the root.
+`insert` does ordinary BST insertion, updates parent pointers, and fixes the
+stored subtree sizes on the path back up. `reroot` picks a random node by rank
+using those sizes and rotates it up until it becomes the root.
   
