@@ -3,9 +3,6 @@
 // (plus up to 20 bonus points)
 // This is more of a theory problem
 // than a programming one.
-//
-import MyLibrary.LnStrm.*;
-//
 public class Quiz02_04 {
     public class AVLnode {
 	int key;

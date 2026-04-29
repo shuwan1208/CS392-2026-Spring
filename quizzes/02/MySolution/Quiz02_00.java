@@ -14,6 +14,13 @@ public class Quiz02_00 {
      object of that class as follows:
      */
     public static void main (String[] args) {
+	/*
+	  MyLibrary contains concrete containers/wrappers such as FnList,
+	  FnA1sz, FnStrn, MyQueueArray, MyQueueList, MyStackArray, and
+	  MyStackList, together with utility/helper classes and exception
+	  classes. Interface/abstract classes like MyQueue/MyQueueBase and
+	  MyStack/MyStackBase are not instantiated directly.
+	*/
 	FnList<Integer> fnListObj = new FnList<Integer>();
 	FnListSUtil fnListSUtilObj = new FnListSUtil();
 	FnA1sz<Integer> fnA1szObj = new FnA1sz<Integer>(new Integer[]{1, 2, 3});
@@ -22,6 +29,7 @@ public class Quiz02_00 {
 	FnStrn fnStrnObj = new FnStrn("quiz02");
 	FnStrnSUtil fnStrnSUtilObj = new FnStrnSUtil();
 	MyQueueArray<Integer> myQueueArrayObj = new MyQueueArray<Integer>(8);
+	MyQueueList<Integer> myQueueListObj = new MyQueueList<Integer>();
 	MyQueueEmptyExn myQueueEmptyExnObj = new MyQueueEmptyExn();
 	MyQueueFullExn myQueueFullExnObj = new MyQueueFullExn();
 	MyStackArray<Integer> myStackArrayObj = new MyStackArray<Integer>(8);
@@ -36,6 +44,7 @@ public class Quiz02_00 {
 	System.out.println(fnStrnObj != null);
 	System.out.println(fnStrnSUtilObj != null);
 	System.out.println(myQueueArrayObj != null);
+	System.out.println(myQueueListObj != null);
 	System.out.println(myQueueEmptyExnObj != null);
 	System.out.println(myQueueFullExnObj != null);
 	System.out.println(myStackArrayObj != null);

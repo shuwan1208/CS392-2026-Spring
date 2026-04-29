@@ -3,12 +3,9 @@
 // A partial implementation of
 // randomized doubly linked binary search tree
 // 30 points for reroot and 20 points for insert
-//
-import java.util.Random;
-
 public class Quiz02_06 {
     Node root = null;
-    private static final Random RAND = new Random();
+    private long randState = 39220260428L;
     public class Node {
 	int key; // key stored in the node
 	int size; // size of the tree rooted as the node
@@ -23,6 +20,12 @@ public class Quiz02_06 {
 	    this.lchild = null;
 	    this.rchild = null;
 	}
+    }
+
+    private int nextRandomInt(int bound) {
+	randState = randState * 1103515245L + 12345L;
+	long nonneg = randState & 0x7fffffffL;
+	return (int)(nonneg % bound);
     }
 
     private static int sizeOf(Node node) {
@@ -98,7 +101,7 @@ public class Quiz02_06 {
 
     public void reroot() {
 	if (root == null) return;
-	Node pick = selectByRank(root, RAND.nextInt(root.size));
+	Node pick = selectByRank(root, nextRandomInt(root.size));
 	while (pick.parent != null) {
 	    if (pick.parent.lchild == pick) {
 		rotateRight(pick.parent);
