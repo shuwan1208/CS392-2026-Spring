@@ -1,8 +1,8 @@
 /*
 HX-2026-02-05: 10 points
 */
-import Library00.FnList.FnList;
-import static Library00.FnList.FnListSUtil.*;
+import MyLibrary.FnList.FnList;
+import static MyLibrary.FnList.FnListSUtil.*;
 
 public class Assign03_02 {
     static boolean balencedq(String text) {

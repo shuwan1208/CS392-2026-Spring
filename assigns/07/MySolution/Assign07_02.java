@@ -1,5 +1,5 @@
-import Library00.LnStrm.*;
-import Library00.FnTuple.*;
+import MyLibrary.LnStrm.*;
+import MyLibrary.FnTuple.*;
 
 public class Assign07_02 {
     private static long cubeSum(FnTupl2<Integer, Integer> xy) {

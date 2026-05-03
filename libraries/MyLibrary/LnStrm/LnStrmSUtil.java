@@ -5,6 +5,7 @@ import MyLibrary.FnList.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.ToIntBiFunction;
 
 public class LnStrmSUtil {
     public static<T>
@@ -78,6 +79,27 @@ public class LnStrmSUtil {
 		  cxs = tl.eval0();
 	      }
 	      return new LnStcn<T>();
+	  }
+	);
+    }
+
+    public static<T>
+	LnStrm<T>
+	m2erge0
+	(LnStrm<T> fxs, LnStrm<T> fys, ToIntBiFunction<T,T> cmpr) {
+	return new LnStrm<T>(
+	  () -> {
+	      LnStcn<T> cxs = fxs.eval0();
+	      if (cxs.nilq()) return fys.eval0();
+	      LnStcn<T> cys = fys.eval0();
+	      if (cys.nilq()) return cxs;
+	      T x0 = cxs.hd();
+	      T y0 = cys.hd();
+	      if (cmpr.applyAsInt(x0, y0) <= 0) {
+		  return new LnStcn<T>(x0, m2erge0(cxs.tl(), fys, cmpr));
+	      } else {
+		  return new LnStcn<T>(y0, m2erge0(fxs, cys.tl(), cmpr));
+	      }
 	  }
 	);
     }

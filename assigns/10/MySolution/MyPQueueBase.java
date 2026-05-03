@@ -1,5 +1,3 @@
-package Library.MyPQueue;
-
 public abstract class MyPQueueBase<T> implements MyPQueue<T> {
 //
     public

@@ -1,4 +1,4 @@
-import Library00.LnStrm.*;
+import MyLibrary.LnStrm.*;
 
 import java.util.function.ToIntBiFunction;
 

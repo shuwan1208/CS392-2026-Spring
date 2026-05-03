@@ -10,9 +10,9 @@
 // in FnGtree to solve Sudoku puzzles. Your solution should
 // be able to solve "hard" Sudoku puzzles effectively.
 //
-import Library00.FnList.*;
-import Library00.LnStrm.*;
-import Library00.FnGtree.*;
+import MyLibrary.FnList.*;
+import MyLibrary.LnStrm.*;
+import MyLibrary.FnGtree.*;
 
 class Sudoku implements FnGtree<Sudoku> {
     private final int[] cells;

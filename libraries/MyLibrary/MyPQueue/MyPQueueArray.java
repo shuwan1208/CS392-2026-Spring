@@ -1,34 +1,27 @@
-import java.util.function.Consumer;
-import java.util.function.BiConsumer;
+package MyLibrary.MyPQueue;
 
 public class MyPQueueArray<T extends Comparable<? super T>> extends MyPQueueBase<T> {
+    private int nitm;
+    private final T[] itms;
 
-    int nitm = 0;
-    T[] itms = null;
-
-    public
-    MyPQueueArray(int cap)
-    {
-	assert (cap >= 1);
+    public MyPQueueArray(int cap) {
+	assert(cap >= 1);
+	nitm = 0;
 	itms = (T[]) new Comparable[cap];
     }
 
-    @Override
     public int size() {
 	return nitm;
     }
 
-    @Override
     public boolean isFull() {
-	return (nitm >= itms.length);
+	return nitm >= itms.length;
     }
 
-    @Override
     public T top$raw() {
 	return itms[0];
     }
 
-    @Override
     public T deque$raw() {
 	T itm = itms[0];
 	nitm -= 1;
@@ -38,12 +31,10 @@ public class MyPQueueArray<T extends Comparable<? super T>> extends MyPQueueBase
 	return itm;
     }
 
-    @Override
     public void enque$raw(T itm) {
 	itms[nitm] = itm;
 	swim(nitm);
 	nitm += 1;
-	return;
     }
 
     private void swim(int i0) {
@@ -53,7 +44,6 @@ public class MyPQueueArray<T extends Comparable<? super T>> extends MyPQueueBase
 	    swap(p0, i0);
 	    i0 = p0;
 	}
-	return;
     }
 
     private void sink(int i0) {
@@ -67,14 +57,11 @@ public class MyPQueueArray<T extends Comparable<? super T>> extends MyPQueueBase
 	    swap(i0, j0);
 	    i0 = j0;
 	}
-	return;
     }
 
     private void swap(int i0, int j0) {
 	T tmp = itms[i0];
 	itms[i0] = itms[j0];
 	itms[j0] = tmp;
-	return;
     }
-
 }

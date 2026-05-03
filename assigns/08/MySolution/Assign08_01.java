@@ -1,8 +1,8 @@
-import Library00.FnList.*;
-import Library00.LnList.*;
-import Library00.LnStrm.*;
-import Library00.FnTuple.*;
-import Library00.MyMap00.*;
+import MyLibrary.FnList.*;
+import MyLibrary.LnList.*;
+import MyLibrary.LnStrm.*;
+import MyLibrary.FnTuple.*;
+import MyLibrary.MyMap00.*;
 
 public class Assign08_01<V>
     implements MyMap00<String, V> {
