@@ -32,6 +32,48 @@ public class FnA1szUtil<T> {
 	return new FnA1sz<T>(res);
     }
 
+    public FnA1sz<T> quickSort(FnA1sz<T> xs, ToIntBiFunction<T, T> cmp) {
+	final int n = xs.length();
+	final T[] res = (T[]) new Object[n];
+	for (int i = 0; i < n; i += 1) {
+	    res[i] = xs.getAt(i);
+	}
+	quickSort0(res, 0, n-1, cmp);
+	return new FnA1sz<T>(res);
+    }
+
+    private void quickSort0(T[] A, int lo, int hi, ToIntBiFunction<T, T> cmp) {
+	if (lo >= hi) {
+	    return;
+	}
+	int mid = lo + (hi - lo) / 2;
+	T pivot = A[mid];
+	int lt = lo;
+	int i = lo;
+	int gt = hi;
+	while (i <= gt) {
+	    int sgn = cmp.applyAsInt(A[i], pivot);
+	    if (sgn < 0) {
+		swap(A, lt, i);
+		lt += 1;
+		i += 1;
+	    } else if (sgn > 0) {
+		swap(A, i, gt);
+		gt -= 1;
+	    } else {
+		i += 1;
+	    }
+	}
+	quickSort0(A, lo, lt-1, cmp);
+	quickSort0(A, gt+1, hi, cmp);
+    }
+
+    private void swap(T[] A, int i, int j) {
+	T tmp = A[i];
+	A[i] = A[j];
+	A[j] = tmp;
+    }
+
     public FnA1sz<T> insertSort(FnA1sz<T> xs, ToIntBiFunction<T, T> cmp) {
 	final int n = xs.length();
 	final T[] res = (T[]) new Object[n];
